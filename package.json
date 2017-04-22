@@ -1,0 +1,25 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Instructions",
+  "main": "bamazonCustomer.js",
+  "dependencies": {
+    "inquire": "^0.4.8",
+    "inquirer": "^3.0.6",
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code3lue/Bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Code3lue/Bamazon/issues"
+  },
+  "homepage": "https://github.com/Code3lue/Bamazon#readme"
+}
