@@ -12,8 +12,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if (err) throw err;
-    console.log('Welcome! You are connected as id ' + connection.threadId);
-    console.log("Heres what we have on sale")
+    
 });
 
 var questions = [{
@@ -21,33 +20,29 @@ var questions = [{
     type: 'input',
     message: 'Choose an item to buy by ID',
     validate: function (value) {
-        if (isNaN(value)== false){
-              if (value > 10 || value < 0) {
-      console.log('\nSorry you must input valid ID number')
-       return false
+        if (isNaN(value)== false && value < 10 && value > 0 && value !== undefined){
+            
+      
+       return true
   }
   else {
+      console.log('\nSorry you must input valid ID number')
      
-      return true
+      return false
       
   }
 
         }
-        else {
-            return false;
-
-        }
-    }
 },
 {
     name: 'quantity',
     type: 'input',
     message: "How many will you be buying?",
     validate: function (value) {
-        if (isNaN(value) == false){
+        if (isNaN(value)== false && value < 10 && value > 0 && value !== undefined) {
        
             return true;
-            
+       
         }
         else {
             return false;
@@ -81,15 +76,50 @@ function getItems() {
         for (var key in data[i]) {
                 console.log(key.toUpperCase() + " " + data[i][key]);             
     }
+} if (data.slice(-1)[0]) {
+    console.log('\n------------------------------------\n')
+    console.log("Press SPACE to continue")
+};
+
+    });
+    start();
 }
+
+function start() {
       
 inquirer.prompt(questions).then(function(answer) {
-    console.log(answer)
-   
-});
-});
 
-}
+   var id = answer.chooseID;
+   var quant = answer.quantity;
+     //query to find the quantity of the item they selected
+
+connection.query('select stock_quantity, item_id from products', function(err, data) {
+    if (err) throw err;
+    console.log(id)
+    var string = JSON.stringify(data);
+    var obj = JSON.parse(string);
+    console.log(obj)
+
+    //**********************THIS IS WHERE YOU LEFT OFF OBJ IS AN ARRAY */
+   
+
+    //JSON.stringify gets rid of that pesky ROWDATAPACKET
+   
+    
+    
+})
+
+
+                    //query to find the quantity of the item they selected
+                //make sure the user quantity is less than the item quantity
+                //if yes, display price
+                //if no, display 'you are loser. you can't have that'
+
+});   
+};
+               
+               
+
 getItems();
 
 
